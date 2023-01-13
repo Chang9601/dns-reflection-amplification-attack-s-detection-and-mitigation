@@ -1,0 +1,290 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 33575909
+    name: "IngressPipeImpl.forward_control.forward_table"
+    alias: "forward_table"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 2
+    name: "hdr.ethernet.dst_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 3
+    name: "hdr.ethernet.src_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 4
+    name: "hdr.ethernet.ether_type"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 5
+    name: "hdr.ipv4.dst_addr"
+    bitwidth: 32
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 6
+    name: "hdr.ipv4.src_addr"
+    bitwidth: 32
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 7
+    name: "local_metadata.ip_proto"
+    bitwidth: 8
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 8
+    name: "local_metadata.icmp_type"
+    bitwidth: 8
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 9
+    name: "local_metadata.l4_src_port"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 10
+    name: "local_metadata.l4_dst_port"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 11
+    name: "local_metadata.dns_id"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  action_refs {
+    id: 16798264
+  }
+  action_refs {
+    id: 16795251
+  }
+  action_refs {
+    id: 16829590
+  }
+  action_refs {
+    id: 16808714
+  }
+  const_default_action_id: 16795251
+  direct_resource_ids: 318779226
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33568457
+    name: "IngressPipeImpl.monitor_control.monitor_table"
+    alias: "monitor_table"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 2
+    name: "hdr.ethernet.dst_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 3
+    name: "hdr.ethernet.src_addr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 4
+    name: "hdr.ethernet.ether_type"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 5
+    name: "hdr.ipv4.dst_addr"
+    bitwidth: 32
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 6
+    name: "hdr.ipv4.src_addr"
+    bitwidth: 32
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 7
+    name: "local_metadata.ip_proto"
+    bitwidth: 8
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 8
+    name: "local_metadata.icmp_type"
+    bitwidth: 8
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 9
+    name: "local_metadata.l4_src_port"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 10
+    name: "local_metadata.l4_dst_port"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 11
+    name: "local_metadata.dns_id"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  action_refs {
+    id: 16839147
+  }
+  action_refs {
+    id: 16799600
+  }
+  action_refs {
+    id: 16813516
+  }
+  const_default_action_id: 16839147
+  direct_resource_ids: 318812114
+  size: 1024
+}
+actions {
+  preamble {
+    id: 16798264
+    name: "IngressPipeImpl.forward_control.noop"
+    alias: "forward_control.noop"
+  }
+}
+actions {
+  preamble {
+    id: 16795251
+    name: "IngressPipeImpl.forward_control.drop"
+    alias: "forward_control.drop"
+  }
+}
+actions {
+  preamble {
+    id: 16829590
+    name: "IngressPipeImpl.forward_control.set_output_port"
+    alias: "set_output_port"
+  }
+  params {
+    id: 1
+    name: "port_num"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16808714
+    name: "IngressPipeImpl.forward_control.send_to_cpu"
+    alias: "send_to_cpu"
+  }
+}
+actions {
+  preamble {
+    id: 16839147
+    name: "IngressPipeImpl.monitor_control.noop"
+    alias: "monitor_control.noop"
+  }
+}
+actions {
+  preamble {
+    id: 16799600
+    name: "IngressPipeImpl.monitor_control.drop"
+    alias: "monitor_control.drop"
+  }
+}
+actions {
+  preamble {
+    id: 16813516
+    name: "IngressPipeImpl.monitor_control.clone_packet"
+    alias: "clone_packet"
+  }
+}
+direct_counters {
+  preamble {
+    id: 318779226
+    name: "IngressPipeImpl.forward_control.foward_counter"
+    alias: "foward_counter"
+  }
+  spec {
+    unit: BOTH
+  }
+  direct_table_id: 33575909
+}
+direct_counters {
+  preamble {
+    id: 318812114
+    name: "IngressPipeImpl.monitor_control.monitor_counter"
+    alias: "monitor_counter"
+  }
+  spec {
+    unit: BOTH
+  }
+  direct_table_id: 33568457
+}
+controller_packet_metadata {
+  preamble {
+    id: 67146229
+    name: "packet_in"
+    alias: "packet_in"
+    annotations: "@controller_header(\"packet_in\")"
+  }
+  metadata {
+    id: 1
+    name: "ingress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_pad"
+    bitwidth: 7
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 67121543
+    name: "packet_out"
+    alias: "packet_out"
+    annotations: "@controller_header(\"packet_out\")"
+  }
+  metadata {
+    id: 1
+    name: "egress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_pad"
+    bitwidth: 7
+  }
+}
+type_info {
+}
